@@ -120,6 +120,48 @@
             return $stmt;
         }
 
+        public function getGameGeneres($url){
+            $sqlQuery = "SELECT  
+                gn.Name,
+                gn.GenereID
+            FROM Games g 
+            LEFT JOIN GameGeneres ggn ON ggn.GameID = g.GameID
+            LEFT JOIN Generes gn ON gn.GenereID = ggn.GenereID
+            WHERE
+            g.url = '" . $url . "'";
+            $stmt = $this->conn->prepare($sqlQuery);
+            $stmt->execute();
+            return $stmt;
+        }
+
+        public function getGameThemes($url){
+            $sqlQuery = "SELECT  
+                th.Name,
+                th.ThemeID
+            FROM Games g 
+            LEFT JOIN GameThemes gth ON gth.GameID = g.GameID
+            LEFT JOIN Themes th ON gth.ThemeID = th.ThemeID
+            WHERE
+            g.url = '" . $url . "'";
+            $stmt = $this->conn->prepare($sqlQuery);
+            $stmt->execute();
+            return $stmt;
+        }
+
+        public function getGameStyles($url){
+            $sqlQuery = "SELECT  
+                st.Name,
+                st.StyleID
+            FROM Games g 
+            LEFT JOIN GameStyles gst ON gst.GameID = g.GameID
+            LEFT JOIN Styles st ON gst.StyleID = st.StyleID
+            WHERE
+            g.url = '" . $url . "'";
+            $stmt = $this->conn->prepare($sqlQuery);
+            $stmt->execute();
+            return $stmt;
+        }
+
     }
 ?>
 
